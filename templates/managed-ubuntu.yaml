@@ -497,7 +497,7 @@ Resources:
           - - |
               #!/bin/bash -xe
             - |
-              apt update
+              apt -y update
             - |
               apt -y install python-setuptools
             - |
