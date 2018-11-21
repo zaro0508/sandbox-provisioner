@@ -447,8 +447,9 @@ Resources:
       'AWS::CloudFormation::Init':
         configSets:
           InstallAndRun:
-            - Install
-            - Config
+          - Install
+          - Config
+          - install_and_enable_cfn_hup
         Install:
           packages:
             apt:
@@ -477,6 +478,41 @@ Resources:
                    - "/members' -H 'Accept: application/json' -H 'Content-Type: application/json' -H 'x-api-key: "
                    - !Ref JcServiceApiKey
                    - "' -d '{\"op\": \"add\",\"type\": \"system\",\"id\": \"'$JC_SYSTEM_ID'\"}'"
+        install_and_enable_cfn_hup:
+          files:
+            /etc/cfn/cfn-hup.conf:
+              content: !Sub |
+                [main]
+                stack= ${AWS::StackId}
+                region= ${AWS::Region}
+              mode: "000400"
+              owner: "root"
+              group: "root"
+            /etc/cfn/hooks.d/cfn-auto-reloader.conf:
+              content: !Sub |
+                [cfn-auto-reloader-hook]
+                triggers=post.update
+                path=Resources.EC2Instance.Metadata.AWS::CloudFormation::Init
+                action=/usr/local/bin/cfn-init -v --stack ${AWS::StackName} --resource EC2Instance --configsets InstallAndRun --region ${AWS::Region}
+                runas=root
+              mode: "000400"
+              owner: "root"
+              group: "root"
+            /lib/systemd/system/cfn-hup.service:
+              content: !Sub |
+                [Unit]
+                Description=cfn-hup daemon
+                [Service]
+                Type=simple
+                ExecStart=/usr/local/bin/cfn-hup
+                Restart=always
+                [Install]
+                WantedBy=multi-user.target
+          commands:
+            01enable_cfn_hup:
+              command: systemctl enable cfn-hup.service
+            02start_cfn_hup:
+              command: systemctl start cfn-hup.service
     Properties:
       ImageId: !If [HasAMIId, !Ref AMIId, !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch, !Ref InstanceType, Arch]]]
       InstanceType: !Ref InstanceType
@@ -501,6 +537,8 @@ Resources:
             - |
               apt -y install python-pip
             - |
+              apt-get install python3
+            - |
               # Install the files and packages from the metadata
               pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
             - |
@@ -515,7 +553,7 @@ Resources:
 
             - |
               # Signal the status from cfn-init
-            - '/opt/aws/bin/cfn-signal -e $? '
+            - '/usr/local/bin/cfn-signal -e $? '
             - '         --stack '
             - !Ref 'AWS::StackName'
             - '         --resource Ec2Instance '
