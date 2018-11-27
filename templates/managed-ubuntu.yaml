@@ -451,9 +451,6 @@ Resources:
           - Config
           - install_and_enable_cfn_hup
         Install:
-          packages:
-            apt:
-              jq: []
           commands:
             01_jumpcloud_agent:
               command: !Join
@@ -468,7 +465,7 @@ Resources:
               command: "sleep 10"
             # get the jumpcloud host id
             02_get_jc_system_id:
-              command: "export systemKey=$(sudo cat /opt/jc/jcagent.conf|jq -r '.systemKey') && echo JC_SYSTEM_ID=$systemKey > /tmp/jc_info"
+              command: export systemKey=$(sudo grep -m1 -oP '"systemKey"\s*:\s*"\K[^"]+' /opt/jc/jcagent.conf) && echo JC_SYSTEM_ID=$systemKey > /tmp/jc_info
             # use rest api to this host to a jumpcloud system group
             03_associate_jc_systems:
               command: !Join
@@ -537,7 +534,7 @@ Resources:
             - |
               apt -y install python-pip
             - |
-              apt-get install python3
+              apt -y install python
             - |
               # Install the files and packages from the metadata
               pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
