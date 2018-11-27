@@ -534,7 +534,7 @@ Resources:
             - |
               apt -y install python-pip
             - |
-              apt -y install python
+              apt -y install python3
             - |
               # Install the files and packages from the metadata
               pip install https://s3.amazonaws.com/cloudformation-examples/aws-cfn-bootstrap-latest.tar.gz
