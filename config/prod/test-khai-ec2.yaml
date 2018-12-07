@@ -1,0 +1,32 @@
+# Provision an EC2 instance
+template_path: templates/managed-ec2-v3.yaml
+stack_name: test-khai-ec2
+parameters:
+  # The Sage deparment for this resource
+  Department: "Platform"
+  # The Sage project this resource will be used for
+  Project: "Infrastructure"
+  # The resource owner
+  OwnerEmail: "khai.do@sagebase.org"
+  # EC2 instance type (available types https://aws.amazon.com/ec2/instance-types/)
+  InstanceType: "t2.nano"
+  # Name of an existing VPC subnet to run the instance in
+  VpcSubnet: "PublicSubnet"
+  # Name of an existing EC2 KeyPair to enable SSH access to the instance
+  KeyName: "sandbox"
+
+  # (Optional) ID of the AMI to deploy
+#  AMIId: "ami-0ddee041772c2d9f8"  # AWS linux with 8GB encrypted boot volume
+#  AMIId: "ami-0ac019f4fcb7cb7e6"
+
+  # test creating an EC2 with an encrypted boot volume
+  EncryptVolume: "false"
+  VolumeSize: '16'
+
+   # Integration with our jumpcloud directory service (do not change)
+  JcConnectKey: !ssm /infra/JcConnectKey
+  JcServiceApiKey: !ssm /infra/JcServiceApiKey
+  JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
+hooks:
+  after_create:
+    - !notify_ec2
