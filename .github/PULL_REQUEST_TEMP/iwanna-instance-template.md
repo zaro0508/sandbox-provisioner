@@ -1,0 +1,20 @@
+# Provision an EC2 instance
+template_path: templates/managed-ec2-v2.yaml
+stack_name: iwanna-instance
+parameters:
+  # The Sage deparment for this resource
+  Department: "Platform"
+  # The Sage project this resource will be used for
+  Project: "Infrastructure"
+  # The resource owner
+  OwnerEmail: "joe.smith@sagebase.org"
+  # EC2 instance type (available types https://aws.amazon.com/ec2/instance-types/)
+  InstanceType: "t2.nano"
+  
+   # Integration with our jumpcloud directory service (do not change)
+  JcConnectKey: !ssm /infra/JcConnectKey
+  JcServiceApiKey: !ssm /infra/JcServiceApiKey
+  JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
+hooks:
+  after_create:
+    - !notify_ec2
