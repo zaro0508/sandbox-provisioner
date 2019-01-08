@@ -42,12 +42,6 @@ Resources:
             Action:
               - 'sts:AssumeRole'
       Path: "/"
-  BatchInstanceProfile:
-    Type: "AWS::IAM::InstanceProfile"
-    Properties:
-      Path: "/"
-      Roles:
-        - !Ref BatchInstanceRole
   BatchComputeEnvironment:
     Type: "AWS::Batch::ComputeEnvironment"
     Properties:
@@ -65,7 +59,7 @@ Resources:
           - !ImportValue us-east-1-sandcastlevpc-PrivateSubnet2
         MinvCpus: 0
         ImageId: !Ref ComputeImageId
-        InstanceRole: !GetAtt BatchInstanceProfile.Arn
+        InstanceRole: !Ref 'BatchInstanceRole'
         InstanceTypes:
           - optimal
         DesiredvCpus: 8
@@ -252,7 +246,7 @@ Resources:
     Properties:
       Role: !GetAtt LambdaExecutionRole.Arn
       Runtime: python2.7
-      Timeout: '3'
+      Timeout: 3
       Handler: index.lambda_handler
       Environment:
         Variables:
@@ -380,7 +374,6 @@ Resources:
         - Name: FunctionName
           Value: !Ref SubmitBatchJobLambda
       EvaluationPeriods: 1
-      MetricName: Errors
       Namespace: AWS/Lambda
       Period: 60
       Statistic: Sum
