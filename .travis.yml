@@ -20,4 +20,3 @@ jobs:
     - stage: deploy
       script:
         - sceptre --var "profile=default" --var "region=us-east-1" launch-env prod
-        - ./deploy-sam-templates.sh || travis_terminate 1
