@@ -42,6 +42,12 @@ Resources:
             Action:
               - 'sts:AssumeRole'
       Path: "/"
+  BatchInstanceProfile:
+    Type: "AWS::IAM::InstanceProfile"
+    Properties:
+      Path: "/"
+      Roles:
+        - !Ref BatchInstanceRole
   BatchComputeEnvironment:
     Type: "AWS::Batch::ComputeEnvironment"
     Properties:
@@ -59,7 +65,7 @@ Resources:
           - !ImportValue us-east-1-sandcastlevpc-PrivateSubnet2
         MinvCpus: 0
         ImageId: !Ref ComputeImageId
-        InstanceRole: !Ref 'BatchInstanceRole'
+        InstanceRole: !GetAtt BatchInstanceProfile.Arn
         InstanceTypes:
           - optimal
         DesiredvCpus: 8
