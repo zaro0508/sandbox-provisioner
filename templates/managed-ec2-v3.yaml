@@ -1,6 +1,6 @@
 #######################################################
 # THIS TEMPLATE IS DEPRECATED
-# PLEASE USE managed-ec2-v3.yaml
+# PLEASE USE managed-ec2-v4.yaml
 #######################################################
 AWSTemplateFormatVersion: 2010-09-09
 Description: >-
@@ -128,6 +128,12 @@ Parameters:
     Description: ID of the AMI to deploy
     Type: String
     Default: ""
+  VolumeSize:
+    Description: The EC2 volume size (in GB)
+    Type: Number
+    Default: 8
+    MinValue: 8
+    MaxValue: 1000
 Conditions:
   PublicEc2Resources: !Or [!Equals [ !Ref VpcSubnet, PublicSubnet ], !Equals [ !Ref VpcSubnet, PublicSubnet1 ], !Equals [ !Ref VpcSubnet, PublicSubnet2 ] ]
   HasAMIId: !Not [!Equals ["", !Ref AMIId]]
@@ -383,6 +389,12 @@ Resources:
       ImageId: !If [HasAMIId, !Ref AMIId, !FindInMap [AWSRegionArch2AMI, !Ref 'AWS::Region', !FindInMap [AWSInstanceType2Arch, !Ref InstanceType, Arch]]]
       InstanceType: !Ref InstanceType
       KeyName: !Ref KeyName
+      BlockDeviceMappings:
+        -
+          DeviceName: "/dev/xvda"
+          Ebs:
+            DeleteOnTermination: true
+            VolumeSize: !Ref VolumeSize
       NetworkInterfaces:
         - DeleteOnTermination: true
           DeviceIndex: "0"

@@ -1,22 +1,22 @@
 # Provision an EC2 instance
-template_path: templates/managed-ubuntu.yaml
-stack_name: ubuntu-test
+template_path: templates/managed-ec2-v4.yaml
+stack_name: neurolincs-unique-objects-ec2
 parameters:
   # The Sage deparment for this resource
-  Department: "CompOnc"
+  Department: "SysBio"
   # The Sage project this resource will be used for
-  Project: "Ubuntu base image"
+  Project: "NeuroLINCS"
   # The resource owner
-  OwnerEmail: "thomas.yu@sagebase.org"
+  OwnerEmail: "kenneth.daily@sagebase.org"
   # EC2 instance type (available types https://aws.amazon.com/ec2/instance-types/)
-  InstanceType: "t2.micro"
-  #This is amazon quickstart ubuntu AMI
-  AMIId: "ami-0ac019f4fcb7cb7e6"
+  InstanceType: "c5.2xlarge"
+  VolumeSize: "750"
 
-  # Integrate with our cloud directory service (do not change)
+  # Integration with our jumpcloud directory service (do not change)
   JcConnectKey: !ssm /infra/JcConnectKey
   JcServiceApiKey: !ssm /infra/JcServiceApiKey
   JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
 hooks:
-  after_update:
+  after_create:
     - !notify_ec2
+

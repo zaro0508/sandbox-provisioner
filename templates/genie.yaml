@@ -252,7 +252,7 @@ Resources:
     Properties:
       Role: !GetAtt LambdaExecutionRole.Arn
       Runtime: python2.7
-      Timeout: '3'
+      Timeout: 3
       Handler: index.lambda_handler
       Environment:
         Variables:
@@ -380,7 +380,6 @@ Resources:
         - Name: FunctionName
           Value: !Ref SubmitBatchJobLambda
       EvaluationPeriods: 1
-      MetricName: Errors
       Namespace: AWS/Lambda
       Period: 60
       Statistic: Sum
