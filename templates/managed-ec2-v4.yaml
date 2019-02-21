@@ -138,9 +138,18 @@ Parameters:
     Default: 8
     MinValue: 8
     MaxValue: 1000
+  OpenPort:
+    Description: Open a TCP port to incoming traffic
+    ConstraintDescription: A port number in the range 1 to 65535
+    Type: Number
+    Default: 0
+    MinValue: 0
+    MaxValue: 65535
 Conditions:
   PublicEc2Resources: !Or [!Equals [ !Ref VpcSubnet, PublicSubnet ], !Equals [ !Ref VpcSubnet, PublicSubnet1 ], !Equals [ !Ref VpcSubnet, PublicSubnet2 ] ]
   HasAMIId: !Not [!Equals ["", !Ref AMIId]]
+  EnableOpenPort: !Not [!Equals ["0", !Ref OpenPort]]
+  AllowPortAccess: !And [!Condition PublicEc2Resources, !Condition EnableOpenPort]
 Mappings:
   AWSInstanceType2Arch:
     t1.micro:
@@ -363,6 +372,23 @@ Mappings:
       HVM64: ami-3e60745c
       HVMG2: NOT_SUPPORTED
 Resources:
+  InstanceSecurityGroup:
+    Type: 'AWS::EC2::SecurityGroup'
+    Condition: AllowPortAccess
+    Properties:
+      GroupDescription: "Open a port for incoming traffic"
+      VpcId: !ImportValue
+          'Fn::Sub': '${AWS::Region}-${VpcName}-VPCId'
+      SecurityGroupIngress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: !Ref OpenPort
+          ToPort: !Ref OpenPort
+          IpProtocol: tcp
+      SecurityGroupEgress:
+        - CidrIp: "0.0.0.0/0"
+          FromPort: -1
+          ToPort: -1
+          IpProtocol: "-1"
   Ec2Instance:
     Type: 'AWS::EC2::Instance'
     Metadata:
@@ -417,6 +443,7 @@ Resources:
               'Fn::Sub': '${AWS::Region}-${VpcName}-VpnSecurityGroup'
             - !ImportValue
               'Fn::Sub': '${AWS::Region}-${VpcName}-BastianSecurityGroup'
+            - !If [AllowPortAccess, !GetAtt InstanceSecurityGroup.GroupId, !Ref "AWS::NoValue"]
           SubnetId: !ImportValue
             'Fn::Sub': '${AWS::Region}-${VpcName}-${VpcSubnet}'
       UserData: !Base64
