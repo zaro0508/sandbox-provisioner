@@ -441,8 +441,7 @@ Resources:
           GroupSet:
             - !ImportValue
               'Fn::Sub': '${AWS::Region}-${VpcName}-VpnSecurityGroup'
-            - !ImportValue
-              'Fn::Sub': '${AWS::Region}-${VpcName}-BastianSecurityGroup'
+            - !If [PublicEc2Resources, 'Fn::ImportValue': !Sub '${AWS::Region}-${VpcName}-BastianSecurityGroup', !Ref 'AWS::NoValue']
             - !If [AllowPortAccess, !GetAtt InstanceSecurityGroup.GroupId, !Ref "AWS::NoValue"]
           SubnetId: !ImportValue
             'Fn::Sub': '${AWS::Region}-${VpcName}-${VpcSubnet}'
