@@ -16,6 +16,7 @@ parameters:
   GrantAccess:
     - 'arn:aws:iam::325565585839:root'   # Required ARN for a synapse bucket
     - 'arn:aws:iam::563295687221:user/mssm@sagebase.org'
+    - 'arn:aws:iam::563295687221:user/phil.snyder@sagebase.org'
 hooks:
   after_create:
     - !synapse_bucket_notify {{stack_group_config.aws_account_name}} {{stack_group_config.aws_account_email}}
