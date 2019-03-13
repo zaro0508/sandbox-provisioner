@@ -1,0 +1,23 @@
+template_path: remote/managed-batch.yaml
+stack_name: iwanna-batch-job
+parameters:
+  # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
+  Department: "Platform"
+  # The Sage project (Infrastructure, amp-ad, ntap, dream, etc..)
+  Project: "Infrastructure"
+  # The resource owner
+  OwnerEmail: "joe.smith@sagebase.org"
+  # The docker command to run
+  ContainerCommands: "['echo', 'Hello World']"
+  # The VPC to run batch instances in (do not change)
+  VpcName: "sandcastlevpc"
+  # (Optional) The docker image to run (default 137112412989.dkr.ecr.us-east-1.amazonaws.com/amazonlinux:latest)
+  ContainerImage: "137112412989.dkr.ecr.us-east-1.amazonaws.com/amazonlinux:latest"
+  # (Optional) Run job on a perioid schedule (default is Enabled), otherwise Disabled
+  PeriodicSchedule: "Enabled"
+  # (Optional) The interval (default is daily) to execute the batch job.
+  # Valid syntax -> https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/ScheduledEvents.html
+  ScheduleExpression: "rate(12 hours)"
+hooks:
+  before_launch:
+    - !cmd "curl https://{{stack_group_config.admincentral_cf_bucket}}.s3.us-east-1.amazonaws.com/aws-infra/master/managed-batch.yaml --create-dirs -o templates/remote/managed-batch.yaml"
