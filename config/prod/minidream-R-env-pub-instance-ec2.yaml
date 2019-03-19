@@ -1,6 +1,6 @@
 # Provision an EC2 instance
 template_path: managed-ec2-v5.yaml
-stack_name: minidream-R-env-pub-instance-ec2 
+stack_name: minidream-R-env-pub-instance-ec2
 parameters:
   # The Sage deparment for this resource
   Department: "CompOnc"
@@ -11,16 +11,16 @@ parameters:
   # EC2 instance type (available types https://aws.amazon.com/ec2/instance-types/)
   InstanceType: "t2.nano"
   # (Optional) ID of the base AMI (supported distros: AWS linux)
-  AMIId: "ami-05ad44c42f2678fcd" 
+  AMIId: "ami-05ad44c42f2678fcd"
   # (Optional) Run EC2 in a subnet (valid values: 'PrivateSubnet' or 'PublicSubnet')
   VpcSubnet: "PublicSubnet"
   # (Optional) Expose a port to incoming traffic (valid range: 1-65535)
   OpenPort: "8787"
-  
+
   # Integration with our jumpcloud directory service (do not change)
   JcConnectKey: !ssm /infra/JcConnectKey
   JcServiceApiKey: !ssm /infra/JcServiceApiKey
   JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
 hooks:
   after_create:
-    - !ec2_notify {{stack_group_config.aws_account_name}} {{stack_group_config.aws_account_email}}
+    - !ec2_notify "{{stack_group_config.aws_account_name}} {{stack_group_config.aws_account_email}}"
