@@ -1,5 +1,5 @@
 template_path: managed-ec2-v5.yaml
-stack_name: nf-osi-processing
+stack_name: nf-osi-processor
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "CompOnc"
