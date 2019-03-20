@@ -10,6 +10,7 @@ parameters:
   OwnerEmail: "sara.gosline@sagebase.org"
   # (Optional) EC2 instance type, default is "t2.nano" (other available types https://aws.amazon.com/ec2/instance-types/)
   InstanceType: "t2.2xlarge"
+  VolumeSize: "500"
   JcConnectKey: !ssm /infra/JcConnectKey
   JcServiceApiKey: !ssm /infra/JcServiceApiKey
   JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
