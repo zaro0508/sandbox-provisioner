@@ -1,6 +1,6 @@
 # Provision an EC2 instance
 template_path: managed-ec2-v5.yaml
-stack_name: roche-ckan-ubuntu18
+stack_name: roche-ckan-awslinux
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "Platform"
@@ -15,7 +15,7 @@ parameters:
   # (Optional) EC2 instance type, default is "t2.nano" (other available types https://aws.amazon.com/ec2/instance-types/)
   InstanceType: "t2.medium"
   # (Optional) ID of the base AMI (default: ami-97785bed) (supported distros: AWS linux)
-  AMIId: "ami-0d9e58b521210cd64"      # AMI with my R packages
+  AMIId: "ami-97785bed"      
   # (Optional) EC2 boot volume size in GB, default is 8GB, Max is 1000GB
   VolumeSize: "50"
   # (Optional) Run EC2 in a subnet (default: PrivateSubnet) (valid values: PrivateSubnet or PublicSubnet)
