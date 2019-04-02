@@ -12,7 +12,7 @@ parameters:
   InstanceType: "t2.nano"
 
   # (Optional) Set true to enable daily backups (default: false)
-  BackupEC2: "true"
+  BackupEc2: "true"
   # (Optional) Number of daily backups to keep (default: 7) (valid range: 1-180)
   SnapshotCount: "3"
 
