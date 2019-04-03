@@ -94,7 +94,7 @@ Resources:
       ContainerProperties:
         Image: !Ref MainImage
         Vcpus: 8
-        Memory: 8000
+        Memory: 32000
         Command:
           - python
           - database_to_staging.py
