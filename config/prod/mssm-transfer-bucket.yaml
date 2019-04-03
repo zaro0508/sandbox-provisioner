@@ -18,6 +18,7 @@ parameters:
     - 'arn:aws:iam::563295687221:user/mssm@sagebase.org'
     - 'arn:aws:iam::563295687221:user/phil.snyder@sagebase.org'
     - 'arn:aws:iam::563295687221:user/william.poehlman@sagebase.org'
+    - 'arn:aws:iam::563295687221:user/khai.do@sagebase.org'
 hooks:
   before_create:
     - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/s3-bucket.yaml --create-dirs -o templates/remote/s3-bucket.yaml"
