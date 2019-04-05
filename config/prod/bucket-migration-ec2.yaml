@@ -7,7 +7,7 @@ parameters:
   # The Sage project (Infrastructure, amp-ad, ntap, dream, etc..)
   Project: "Infrastructure"
   # The resource owner
-  OwnerEmail: "khai.do@sagebase.org"
+  OwnerEmail: "william.poehlman@sagebase.org"
 
   # The following parameters are only examples they are not required.
   # You may omit them if you do not need to override the defaults.
