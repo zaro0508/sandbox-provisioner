@@ -1,5 +1,5 @@
 # Instance to test integration with parkmycloud
-template_path: managed-ec2-v4.yaml
+template_path: managed-ec2-v6.yaml
 stack_name: pmc-test-ec2
 parameters:
   # The Sage deparment for this resource
@@ -10,6 +10,11 @@ parameters:
   OwnerEmail: "joe.smith@sagebase.org"
   # EC2 instance type (available types https://aws.amazon.com/ec2/instance-types/)
   InstanceType: "t2.nano"
+
+  # (Optional) Set true to enable daily backups (default: false)
+  BackupEc2: "true"
+  # (Optional) Number of daily backups to keep (default: 7) (valid range: 1-180)
+  SnapshotCount: "3"
 
    # Integration with our jumpcloud directory service (do not change)
   JcConnectKey: !ssm /infra/JcConnectKey
