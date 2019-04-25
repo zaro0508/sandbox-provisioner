@@ -1,4 +1,4 @@
-template_path: managed-ec2-v5.yaml
+template_path: remote/managed-ec2.yaml
 stack_name: toil-test-machine
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
