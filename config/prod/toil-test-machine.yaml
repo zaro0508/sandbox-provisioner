@@ -5,7 +5,7 @@ parameters:
   Department: "CompOnc"
   # The Sage project (Infrastructure, amp-ad, ntap, dream, etc..)
   Project: "NF OSI"
-  VolumeSize: "800"
+  VolumeSize: "400"
   # The resource owner
   OwnerEmail: "sara.gosline@sagebase.org"
 
