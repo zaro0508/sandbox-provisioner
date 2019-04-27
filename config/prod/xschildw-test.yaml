@@ -1,6 +1,6 @@
 # Provision an EC2 instance
 template_path: remote/managed-ec2.yaml
-stack_name: xschildw-test-20190426b
+stack_name: xschildw-test-20190426c
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "Platform"
@@ -31,6 +31,7 @@ parameters:
   # BackupEc2: "true"
   # (Optional) Number of daily backups to keep (default: 7) (valid range: 1-180)
   # SnapshotCount: "14"
+  VolumeSize: "500"
   InstanceType: "m4.4xlarge"
   # Integration with our jumpcloud directory service (do not change)
   JcConnectKey: !ssm /infra/JcConnectKey
