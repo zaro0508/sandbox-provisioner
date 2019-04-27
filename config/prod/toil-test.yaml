@@ -5,7 +5,7 @@ parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "CompOnc"
   # The Sage project (Infrastructure, amp-ad, ntap, dream, etc..)
-  Project: "NF OSI"
+  Project: "NF_OSI"
   # The resource owner
   OwnerEmail: "sara.gosline@sagebase.org"
 
