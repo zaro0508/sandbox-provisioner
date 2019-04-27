@@ -1,6 +1,6 @@
 # Provision an EC2 instance
 template_path: remote/managed-ec2.yaml
-stack_name: iwanna-instance
+stack_name: xschildw-test-20190426
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "Platform"
