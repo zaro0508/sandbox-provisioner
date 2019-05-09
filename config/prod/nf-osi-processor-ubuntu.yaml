@@ -1,6 +1,6 @@
 # Provision an EC2 instance
 template_path: remote/managed-ec2-ubuntu-v1.yaml
-stack_name: nf-osi-processor
+stack_name: nf-osi-processor-ubuntu
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "CompOnc"
@@ -18,9 +18,9 @@ parameters:
   # parameters *only* if you want to override the defaults.
 
   # (Optional) EC2 instance type, default is "t3.nano" (other available types https://aws.amazon.com/ec2/instance-types/)
-  #  InstanceType: "m4.large"
+  InstanceType: "m4.10xlarge"
   # (Optional) EC2 boot volume size in GB, default is 8GB, Max is 1000GB
-  # VolumeSize: "800"
+  VolumeSize: "800"
   # (Optional) Base instance on AMI (default: ami-0a313d6098716f372)
   # AMIId: "ami-0565af6e282977273"
   # (Optional) Run EC2 in a subnet (default: PrivateSubnet) (valid values: PrivateSubnet or PublicSubnet)
