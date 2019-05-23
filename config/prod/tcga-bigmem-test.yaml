@@ -1,5 +1,5 @@
 # Provision an EC2 instance
-template_path: remote/managed-ec2-ubuntu-v1.yaml
+template_path: remote/managed-ec2-ubuntu-v2.j2
 stack_name: tcga-test-bigmem
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
@@ -23,8 +23,6 @@ parameters:
   # AMIId: "ami-0565af6e282977273"
   # (Optional) Run EC2 in a subnet (default: PrivateSubnet) (valid values: PrivateSubnet or PublicSubnet)
   # VpcSubnet: "PublicSubnet"
-  # (Optional) Expose a port to incoming traffic (default is no open ports) (valid range: 1-65535)
-  # OpenPort: "80"
   # (Optional) Set true to enable daily backups (default: false)
   # BackupEc2: "true"
   # (Optional) Number of daily backups to keep (default: 7) (valid range: 1-180)
@@ -34,11 +32,16 @@ parameters:
   JcConnectKey: !ssm /infra/JcConnectKey
   JcServiceApiKey: !ssm /infra/JcServiceApiKey
   JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
+
+#sceptre_user_data:
+  # (Optional) Expose ports to incoming traffic (default is no open ports) (valid range: 1-65535)
+  # OpenPorts: ["80","443"]
+
 # For CI system (do not change)
 hooks:
   before_create:
-    - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/managed-ec2-ubuntu-v1.yaml --create-dirs -o templates/remote/managed-ec2-ubuntu-v1.yaml"
+    - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/managed-ec2-ubuntu-v2.j2 --create-dirs -o templates/remote/managed-ec2-ubuntu-v2.j2"
   before_update:
-    - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/managed-ec2-ubuntu-v1.yaml --create-dirs -o templates/remote/managed-ec2-ubuntu-v1.yaml"
+    - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/managed-ec2-ubuntu-v2.j2 --create-dirs -o templates/remote/managed-ec2-ubuntu-v2.j2"
   after_create:
     - !ec2_notify "{{stack_group_config.aws_account_name}} {{stack_group_config.aws_account_email}}"
