@@ -7,8 +7,8 @@ repo.
 
 ## Workflow
 The workflow to provision AWS resources is done using pull requests.
-PRs provide history, gating, and a way to review and approve resource
-requests.
+Request using PRs provide history, gating, reviewing and an approval
+process.
 
 ### Provision EC2 instances
 Instructions and workflow to auto provision and de-provision an EC2 is in
