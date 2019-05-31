@@ -18,9 +18,9 @@ parameters:
   # parameters *only* if you want to override the defaults.
 
   # (Optional) EC2 instance type, default is "t2.nano" (other available types https://aws.amazon.com/ec2/instance-types/)
-  # InstanceType: "t2.medium"
+  InstanceType: "m5d.4xlarge"
   # (Optional) EC2 boot volume size in GB, default is 8GB, Max is 1000GB
-  # VolumeSize: "50"
+  VolumeSize: "500"
   # (Optional) Base instance on AMI (default: ami-0de53d8956e8dcf80)
   # AMIId: "ami-01ac4e28da63bac3c"
   # (Optional) Run EC2 in a subnet (default: PrivateSubnet) (valid values: PrivateSubnet or PublicSubnet)
