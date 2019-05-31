@@ -29,7 +29,11 @@ parameters:
   # BackupEc2: "true"
   # (Optional) Number of daily backups to keep (default: 7) (valid range: 1-180)
   # SnapshotCount: "14"
-
+  Ec2InstanceId: "i-03510ca53eb38da83"
+  SSLCertificateIdArn: "arn:aws:acm:us-east-1:055273631518:certificate/992c2d49-579a-465e-beff-1a08c284f7db"
+  VpcId: "vpc-e66bd19d"   # computevpc
+  AppPort: "80"         # rstudio port
+  Subnets: "subnet-21a68d7c,subnet-4f3e2b2b,subnet-77d1e458"
   # Integration with our jumpcloud directory service (do not change)
   JcConnectKey: !ssm /infra/JcConnectKey
   JcServiceApiKey: !ssm /infra/JcServiceApiKey
