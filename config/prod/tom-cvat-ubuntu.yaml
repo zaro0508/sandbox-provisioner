@@ -24,7 +24,7 @@ parameters:
   # (Optional) Base instance on AMI (default: ami-0a313d6098716f372)
   # AMIId: "ami-0565af6e282977273"
   # (Optional) Run EC2 in a subnet (default: PrivateSubnet) (valid values: PrivateSubnet or PublicSubnet)
-  VpcSubnet: "PublicSubnet"
+  # VpcSubnet: "PublicSubnet"
   # (Optional) Set true to enable daily backups (default: false)
   # BackupEc2: "true"
   # (Optional) Number of daily backups to keep (default: 7) (valid range: 1-180)
