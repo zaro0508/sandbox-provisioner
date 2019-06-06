@@ -7,7 +7,7 @@ parameters:
   # The Sage project (Infrastructure, amp-ad, ntap, dream, etc..)
   Project: "NF"
   # The resource owner
-  OwnerEmail: "jineta.banerjee@sagebionetworks.org"
+  OwnerEmail: "jineta.banerjee@sagebase.org"
 
   # Default account settings, leave alone unless you plan to override
   VpcName: "{{stack_group_config.default_vpc}}"
