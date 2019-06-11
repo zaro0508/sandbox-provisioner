@@ -22,7 +22,7 @@ parameters:
   # (Optional) EC2 boot volume size in GB, default is 8GB, Max is 1000GB
   VolumeSize: "500"
   # (Optional) Base instance on AMI (default: ami-0a313d6098716f372)
-  AMIId: "ami-061a59e27c8da0b93"
+  AMIId: "ami-0226a8af83fcecb43"
   # (Optional) Run EC2 in a subnet (default: PrivateSubnet) (valid values: PrivateSubnet or PublicSubnet)
   # VpcSubnet: "PublicSubnet"
   # (Optional) Set true to enable daily backups (default: false)
