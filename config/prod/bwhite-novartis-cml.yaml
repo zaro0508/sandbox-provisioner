@@ -13,8 +13,8 @@ parameters:
   # Default account settings, leave alone unless you plan to override
   VpcName: "sandcastlevpc"
   KeyName: "sandbox"
-  # See https://www.bioconductor.org/help/bioconductor-cloud-ami/
-  AMIId: "ami-08333c98cd3b5ada7"
+  # See http://www.louisaslett.com/RStudio_AMI/ for AMIs with R 3.6.0 and RStudio
+  AMIId: "ami-0226a8af83fcecb43"
 
   # Settings have default values but can be overriden. Set the below
   # parameters *only* if you want to override the defaults.
