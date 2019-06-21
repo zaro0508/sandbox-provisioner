@@ -12,20 +12,17 @@ parameters:
   # Default account settings, leave alone unless you plan to override
   VpcName: "sandcastlevpc"
   KeyName: "sandbox"
-  AMIId: "ami-0a313d6098716f372"
+  AMIId: "ami-0a313d6098716f372"    # Ubuntu, 18.04 LTS, amd64 bionic image build on 2019-02-12
+
   # Settings have default values but can be overriden. Set the below
   # parameters *only* if you want to override the defaults.
 
-  # (Optional) EC2 instance type, default is "t3.nano" (other available types https://aws.amazon.com/ec2/instance-types/)
+  # (Optional) EC2 instance type, default is "t3.nano" (other available types https://aws.amazon.com/ec2/pricing/on-demand/)
   InstanceType: "m4.10xlarge"
   # (Optional) EC2 boot volume size in GB, default is 8GB, Max is 1000GB
   VolumeSize: "800"
-  # (Optional) Base instance on AMI (default: ami-0a313d6098716f372)
-  # AMIId: "ami-0565af6e282977273"
   # (Optional) Run EC2 in a subnet (default: PrivateSubnet) (valid values: PrivateSubnet or PublicSubnet)
   # VpcSubnet: "PublicSubnet"
-  # (Optional) Expose a port to incoming traffic (default is no open ports) (valid range: 1-65535)
-  # OpenPort: "80"
   # (Optional) Set true to enable daily backups (default: false)
   # BackupEc2: "true"
   # (Optional) Number of daily backups to keep (default: 7) (valid range: 1-180)
@@ -35,6 +32,11 @@ parameters:
   JcConnectKey: !ssm /infra/JcConnectKey
   JcServiceApiKey: !ssm /infra/JcServiceApiKey
   JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
+
+#sceptre_user_data:
+  # (Optional) Expose ports to incoming traffic (default is no open ports) (valid range: 1-65535)
+  # OpenPorts: ["80","443"]
+
 # For CI system (do not change)
 hooks:
   before_create:
