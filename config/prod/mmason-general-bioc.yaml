@@ -1,5 +1,6 @@
 # Provision an EC2 instance
-template_path: remote/managed-ec2-v9.j2
+template_path: remote/managed-ec2-ubuntu-v3.j2
+# Change the stack name to something unique
 stack_name: mmason-general-bioc
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
