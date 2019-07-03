@@ -14,7 +14,7 @@ parameters:
   VpcName: "{{stack_group_config.default_vpc}}"
   KeyName: "{{stack_group_config.default_key_pair}}"
   # (Optional) Base instance on AMI (default: ami-0de53d8956e8dcf80)
-  AMIId: "ami-03d9f43d1b2120098"
+  AMIId: "ami-07d6a17cd293c439a"
 
   # Settings have default values but can be overriden. Set the below
   # parameters *only* if you want to override the defaults.
