@@ -4,7 +4,7 @@ stack_name: tom-ncats
 sceptre_user_data:
   Distro: "aws"     # (valid values: aws, ubuntu) AMIId must match distro
   # (Optional) Expose ports to incoming traffic (default is no open ports) (valid range: 1-65535)
-  OpenPorts: ["22"]
+  OpenPorts: ["22"] 
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "CompOnc"
