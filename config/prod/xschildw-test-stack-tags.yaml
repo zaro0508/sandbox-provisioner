@@ -31,8 +31,8 @@ parameters:
   JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
 
 stack-tags:
-  Department: "Platform"
-  Project: "Infrastructure"
+  Department: "Platform-st"
+  Project: "Infrastructure-st"
   OwnerEmail: "x.schildwachter@sagebase.org"
 
 # For CI system (do not change)
