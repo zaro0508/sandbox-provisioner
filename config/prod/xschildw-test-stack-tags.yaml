@@ -1,7 +1,15 @@
 # Provision a Windows EC2 instance
 template_path: remote/managed-ec2-win.yaml
 stack_name: xschildw-test-stack-tags
+
+stack-tags: &tags
+  Department: "IT"
+  Project: "Infrastructure"
+  OwnerEmail: "x.schildwachter@sagebase.org"
+
 parameters:
+  <<: *tags
+
   # Default account settings, leave alone unless you plan to override
   VpcName: "{{stack_group_config.default_vpc}}"
   KeyName: "{{stack_group_config.default_key_pair}}"
@@ -29,11 +37,6 @@ parameters:
   JcConnectKey: !ssm /infra/JcConnectKey
   JcServiceApiKey: !ssm /infra/JcServiceApiKey
   JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
-
-stack-tags:
-  Department: "Platform-st"
-  Project: "Infrastructure-st"
-  OwnerEmail: "x.schildwachter@sagebase.org"
 
 # For CI system (do not change)
 hooks:
