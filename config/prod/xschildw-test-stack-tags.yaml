@@ -3,7 +3,7 @@ template_path: remote/managed-ec2-win.yaml
 stack_name: xschildw-test-stack-tags
 parameters:
   # Default account settings, leave alone unless you plan to override
-  VpcName: {{stack_group_config.default_vpc}}
+  VpcName: "{{stack_group_config.default_vpc}}"
   KeyName: "{{stack_group_config.default_key_pair}}"
   AMIId: "{{stack_group_config.default_win_ami}}"
 
