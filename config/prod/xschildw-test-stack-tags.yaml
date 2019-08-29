@@ -4,8 +4,8 @@ stack_name: xschildw-test-stack-tags
 parameters:
   # Default account settings, leave alone unless you plan to override
   VpcName: {{stack_group_config.default_vpc}}
-  KeyName: {{stack_group_config.default_key_pair}}
-  AMIId: {{stack_group_config.default_win_ami}}
+  KeyName: "{{stack_group_config.default_key_pair}}"
+  AMIId: "{{stack_group_config.default_win_ami}}"
 
   # Settings have default values but can be overriden. Set the below
   # parameters *only* if you want to override the defaults.
