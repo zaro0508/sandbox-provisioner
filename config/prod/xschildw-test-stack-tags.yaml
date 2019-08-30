@@ -1,5 +1,5 @@
 # Provision a Windows EC2 instance
-template_path: remote/managed-ec2-win.yaml
+template_path: remote/managed-ec2-win-v1.yaml
 stack_name: xschildw-test-stack-tags
 parameters:
   # Default account settings, leave alone unless you plan to override
@@ -38,8 +38,8 @@ stack-tags:
 # For CI system (do not change)
 hooks:
   before_create:
-    - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/managed-ec2-win-v1.yaml --create-dirs -o templates/remote/managed-ec2-win.yaml"
+    - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/managed-ec2-win-v1.yaml --create-dirs -o templates/remote/managed-ec2-win-v1.yaml"
   before_update:
-    - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/managed-ec2-win-v1.yaml --create-dirs -o templates/remote/managed-ec2-win.yaml"
+    - !cmd "curl https://s3.amazonaws.com/{{stack_group_config.admincentral_cf_bucket}}/aws-infra/master/managed-ec2-win-v1.yaml --create-dirs -o templates/remote/managed-ec2-win-v1.yaml"
   after_create:
     - !ec2_notify "{{stack_group_config.aws_account_name}} {{stack_group_config.aws_account_email}}"
