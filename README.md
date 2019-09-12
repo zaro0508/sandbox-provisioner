@@ -10,7 +10,9 @@ process.
 Contributions are welcome.
 
 Requirements:
-* Install [pre-commit](https://pre-commit.com/#install)
+* Install [pre-commit](https://pre-commit.com/#install) app
+* Clone this repo
+* Run `pre-commit install` to install the git hook.
 
 ## Testing
 As a pre-deployment step we syntatically validate our sceptre and
