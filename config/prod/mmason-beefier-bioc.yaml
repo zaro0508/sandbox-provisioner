@@ -20,8 +20,8 @@ parameters:
   # parameters *only* if you want to override the defaults.
 
   # (Optional) EC2 instance type, default is "c5d.2xlarge" (other available types https://aws.amazon.com/ec2/pricing/on-demand/)
-  #InstanceType: "c5.2xlarge"
-  InstanceType: "c5.18xlarge"
+  InstanceType: "c5.2xlarge"
+  #InstanceType: "c5.18xlarge"
   # (Optional) EC2 boot volume size in GB, default is 8GB, Max is 1000GB
   VolumeSize: "500"
   # (Optional) Run EC2 in a subnet (default: PrivateSubnet) (valid values: PrivateSubnet or PublicSubnet)
