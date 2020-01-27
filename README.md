@@ -28,7 +28,7 @@ in [Example PRs](https://github.com/Sage-Bionetworks/sandbox-provisioner/pulls?u
 
 ## Deployments
 We use [sceptre](https://sceptre.github.io/) and [cloudformation](https://aws.amazon.com/cloudformation/)
-to deploy resources onto an AWS account.
+templates to deploy resources onto an AWS account.
 
 ## Continuous Integration
 We have configured Travis to deploy cloudformation template updates.
