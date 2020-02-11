@@ -2,22 +2,22 @@
 template_path: remote/managed-ec2-linux-v1.j2
 stack_name: dwebster-sandbox-host
 sceptre_user_data:
-  Distro: "aws"     # (valid values: aws, ubuntu) AMIId must match distro
+  Distro: "ubuntu"     # (valid values: aws, ubuntu) AMIId must match distro
   # (Optional) Expose ports to incoming traffic (default is no open ports) (valid range: 1-65535)
-  OpenPorts: ["80","443"]
+  #OpenPorts: ["80","443"]
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "DigitalHealth"
   # The Sage project (Infrastructure, amp-ad, ntap, dream, etc..)
-  Project: "general_use"
+  Project: "GeneralUse"
   # The resource owner
   OwnerEmail: "dan.webster@sagebase.org"
 
   # Default account settings, leave alone unless you plan to override
   VpcName: "sandcastlevpc"
   KeyName: "sandbox"
-  AMIId: "ami-0ca7208f904dc1874"      # AWS linux 2 AMI 2.0.20200108 x86_64 HVM gp2
-  # AMIId: "ami-0acb259f7a7b035f6"      # Ubuntu, 18.04 LTS, amd64 bionic image build on 2019-02-12
+  # AMIId: "ami-0ca7208f904dc1874"      # AWS linux 2 AMI 2.0.20200108 x86_64 HVM gp2
+  AMIId: "ami-0acb259f7a7b035f6"      # Ubuntu, 18.04 LTS, amd64 bionic image build on 2019-02-12
 
   # Settings have default values but can be overriden. Set the below
   # parameters *only* if you want to override the defaults.
