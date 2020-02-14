@@ -5,7 +5,7 @@ dependencies:
   - prod/ecmonsen-emorypipeline-ci.yaml
 parameters:
   SourceAccountId: "186706593821"
-  SynapseStorageLocationId: "0"
+  SynapseStorageLocationId: "40913"
   SynapseNotifyUsers: "3399376"
   Department: SysBio
   Project: amp-ad
