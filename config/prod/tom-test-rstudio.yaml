@@ -17,7 +17,7 @@ parameters:
   VpcName: "sandcastlevpc"
   KeyName: "sandbox"
   # AMIId: "ami-0b898040803850657"      # AWS linux 2 AMI 2.0.20190618 x86_64 HVM gp2
-  AMIId: "ami-0dd364c8d5b21c4aa"      # Rstudio instance built through ami-provisioner
+  AMIId: "ami-0af1602a4b2831345"      # Rstudio instance built through ami-provisioner
 
   # Settings have default values but can be overriden. Set the below
   # parameters *only* if you want to override the defaults.
