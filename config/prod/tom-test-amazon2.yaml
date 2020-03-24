@@ -16,7 +16,7 @@ parameters:
   # Default account settings, leave alone unless you plan to override
   VpcName: "sandcastlevpc"
   KeyName: "sandbox"
-  AMIId: "ami-0b901c282495d3f0e"      # AWS linux 2 AMI 2.0.20190618 x86_64 HVM gp2
+  AMIId: "ami-00a8e72bc0c50ba7c"      # Sage v1.0.0 AWS linux 2
   # AMIId: "ami-0a313d6098716f372"      # Ubuntu, 18.04 LTS, amd64 bionic image build on 2019-02-12
 
   # Settings have default values but can be overriden. Set the below
