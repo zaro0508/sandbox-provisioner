@@ -12,7 +12,7 @@ parameters:
   # Default account settings, leave alone unless you plan to override
   VpcName: "sandcastlevpc"
   KeyName: "sandbox"
-  AMIId: "ami-02d43577e47e684d9"    # Windows_Server-2019-English-Full-2019.03.13
+  AMIId: "ami-074545a6fb2313e2c"    # Windows_Server-2019-English-Full-Base-2019.12.16
 
   # Settings have default values but can be overriden. Set the below
   # parameters *only* if you want to override the defaults.
