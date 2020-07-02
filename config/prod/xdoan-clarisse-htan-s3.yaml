@@ -21,7 +21,7 @@ parameters:
   GrantAccess:
     - 'arn:aws:iam::325565585839:root'  # Required ARN for a synapse bucket
     - 'arn:aws:iam::426577889437:user/clarisse.lau'
-    - 'arn:aws:iam::563295687221:assumed-role/xengie.doan@sagebase.org'
+    - 'arn:aws:iam::563295687221:user/xengie.doan@sagebase.org'
   # (Optional) true (default) to encrypt bucket, false for no encryption
   # EncryptBucket: 'false'
   # (Optional) 'Enabled' to enable bucket versioning, default is 'Suspended'

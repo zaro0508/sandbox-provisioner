@@ -20,7 +20,7 @@ parameters:
   # (Optional) Allow accounts, groups, and users to access bucket. (default is no access).
   GrantAccess:
     - 'arn:aws:iam::325565585839:root'   # Required ARN for a synapse bucket
-    - 'arn:aws:iam::563295687221:assumed-role/xengie.doan@sagebase.org'
+    - 'arn:aws:iam::563295687221:user/xengie.doan@sagebase.org'
     - 'arn:aws:iam::289701539771:user/dagutman'
   # (Optional) true (default) to encrypt bucket, false for no encryption
   # EncryptBucket: 'false'
