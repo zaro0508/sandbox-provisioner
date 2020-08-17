@@ -1,6 +1,6 @@
 # Provision an EC2 instance
-template_path: managed-ec2-v5.yaml
-stack_name: JKG-SB-test-ec2
+template_path: "managed-ec2-v5.yaml"
+stack_name: "JKG-SB-test-ec2"
 parameters:
   # The Sage deparment (Platform, CompOnc, SysBio, Governance, etc..)
   Department: "SysBio"
@@ -20,9 +20,9 @@ parameters:
   #OpenPort: "80"
 
   # Integration with our jumpcloud directory service (do not change)
-  JcConnectKey: !ssm /infra/JcConnectKey
-  JcServiceApiKey: !ssm /infra/JcServiceApiKey
-  JcSystemsGroupId: !ssm /infra/JcSystemsGroupId
+  JcConnectKey: !ssm "/infra/JcConnectKey"
+  JcServiceApiKey: !ssm "/infra/JcServiceApiKey"
+  JcSystemsGroupId: !ssm "/infra/JcSystemsGroupId"
 hooks:
   after_create:
     - !ec2_notify "{{stack_group_config.aws_account_name}} {{stack_group_config.aws_account_email}}"
